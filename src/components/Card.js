@@ -1,21 +1,24 @@
 import React from 'react';
 import './styles/Card.css'
-import photo0 from '../images/0.png'
 
 let randomNumber;
 
-export default class Card extends React.Component{
+export default function Card (props){
 
 
+    if(props.id >= 0){
 
-    componentDidMount(){
-
-    }
-    render(){
         return(
             <div className='card-container'>
-                <img src={`/${this.props.type}/${this.props.photoCode}.png`} alt="" />
+                <img src={`/${props.type}/${props.lvl}/${props.photoCode}.png`} alt="" />
+            </div>
+        )
+    }else{
+        return(
+            <div className='card-container'>
+                
             </div>
         )
     }
+    
 }

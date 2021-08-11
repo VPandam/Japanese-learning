@@ -2,22 +2,29 @@ import React from 'react';
 import Chrono from '../components/Chrono.js'
 import Card from '../components/Card'
 import './styles/Game.css'
+import { useLocation } from 'react-router-dom';
 
-let cardList;
+const cardList = {0:"a", 1:"i", 2:"u", 3:"e", 4:"o", 5:"ka", 6:"ki", 7:"ku", 8:"ke", 9:"ko",
+10:"sa", 11:"shi", 12:"su", 13:"se", 14:"so"};
+const cardListLvl = {1:4, 2:9, 3:14};
 let userInputBox;
 let photoCode;
 let totalTries;
 let totalSuccess;
 let totalFails;
+let location;
+
 class Game extends React.Component{
     constructor(props){
         super(props);
-        this.state = {actualCard: undefined, userInput: undefined, type: "all", photoCode: ""}
+        this.state = {actualCard: undefined, userInput: undefined, type: "hiragana", photoCode: "", lvl: 3}
         // this.handleSubmit = this.handleSubmit.bind(this);
-        cardList = {0:"a", 1:"i", 2:"u", 3:"e", 4:"o", 5:"ka", 6:"ki", 7:"ku", 8:"ke", 9:"ko"};
+
         totalTries = 0;
         totalSuccess = 0;
         totalFails = 0;
+        location = props.location;
+
         
 
     }
@@ -35,10 +42,13 @@ class Game extends React.Component{
         console.log("randomInt: " + randomInt) 
         return randomInt
     }
-    getCard(){
+    async getCard(){
         let getCardThis = this;
-        let randomIntPromise = this.getRandomInt(0, Object.keys(cardList).length-1);
-        randomIntPromise.then(function(card){
+        console.log(cardListLvl[this.state.lvl])
+        await this.getRandomInt(0, cardListLvl[this.state.lvl])
+
+        .then(function(card){
+            console.log(card)
             getCardThis.setState({actualCard: card})
         });
     }
@@ -65,6 +75,7 @@ class Game extends React.Component{
     }
 
     componentDidMount(){
+        this.setState({type: location.state.type})
         userInputBox = document.getElementById('input-text-box');
         userInputBox.addEventListener("keyup", function(event){
             if (event.keyCode === 13){
@@ -86,6 +97,7 @@ class Game extends React.Component{
 
         }else{
             let type = this.getRandomInt(0,1);
+            console.log(type + "type")
             if (type === 0){
                 this.setState({photoCode: this.state.actualCard + 'hir'});
             }else{
@@ -96,37 +108,48 @@ class Game extends React.Component{
         
     }
     async nextPhoto(){
-        this.getCard();
+        await this.getCard();
         this.getPhotoCode();
         document.getElementById('input-text-box').value = '';
     }
-    render(){
-        return(
-            <div>
-                <p>Game</p>
-                <Chrono/>
-                <div>
-                    <p>Tries: {totalTries}</p>
-                    <p>Success: {totalSuccess}</p>
-                    <p>Fail: {totalFails}</p>
-                </div>
-                <div className='game-container'>
 
-                    <div className='game-card-container'>
-                        <Card id={this.state.actualCard} type={this.state.type} photoCode={this.state.photoCode}/>
+    componentDidUpdate(){
+        console.log(this.state)
+    }    
+    render(){
+
+            return(
+                <div>
+                    <p>Game</p>
+                    <Chrono/>
+                    <div>
+                        <p>Tries: {totalTries}</p>
+                        <p>Success: {totalSuccess}</p>
+                        <p>Fail: {totalFails}</p>
                     </div>
-                    <div className='input-container'>
-                        <input 
-                        onChange={this.handleChange} 
-                        className='input-text' 
-                        id='input-text-box'
-                        type="text"
-                        />
-                        <button onClick={this.handleClick.bind(this)} id ='button-send'> Send</button>
+                    <div className='game-container'>
+    
+                        <div className='game-card-container'>
+                            <Card 
+                            id={this.state.actualCard} 
+                            type={this.state.type} 
+                            photoCode={this.state.photoCode}
+                            lvl={this.state.lvl}
+                            />
+                        </div>
+                        <div className='input-container'>
+                            <input 
+                            onChange={this.handleChange} 
+                            className='input-text' 
+                            id='input-text-box'
+                            type="text"
+                            />
+                            <button onClick={this.handleClick.bind(this)} id ='button-send'> Send</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        
     }
 }
 

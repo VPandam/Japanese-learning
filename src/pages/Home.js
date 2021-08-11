@@ -7,7 +7,7 @@ export default function Home(){
         <div>
             <p>HOME</p>
             <div className='button-game'>
-                <Link to='/game'>Game</Link>
+                <Link to='/lvlselect'>Game</Link>
             </div>
         
         </div>
