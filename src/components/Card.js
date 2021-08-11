@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles/Card.css'
 
-let randomNumber;
 
 export default function Card (props){
 
 
+    
     if(props.id >= 0){
 
         return(
