@@ -2,7 +2,6 @@ import React, { useEffect, useState} from 'react';
 import Chrono from '../components/Chrono.js'
 import Card from '../components/Card'
 import './styles/Game.css'
-import { useLocation } from 'react-router-dom';
 
 
 export default function Game (props){
@@ -11,52 +10,75 @@ export default function Game (props){
     9:"ko", 10:"sa", 11:"shi", 12:"su", 13:"se", 14:"so"};
     
     const cardListLvl = {1:4, 2:9, 3:14};
-    let userInputBox;
     let totalTries = 0;
     let totalSuccess = 0;
     let totalFails = 0;
     
     
     
+    
     const [actualCard, setActualCard] = useState(undefined);
     const [userInput, setUserInput] = useState('');
     const [photoCode, setPhotoCode] = useState('');
-    const [type, setType] = useState(undefined);
-    const [lvl, setLvl] = useState(undefined);
+    const [gameInfo, setGameInfo] = useState({type: undefined, lvl: undefined});
 
 
 
 
-    useEffect(() =>{
-        console.log(props)
-        console.log(props.location.state)
-        setType (props.location.state.type)
-        
 
-        
+    useEffect(() => {
 
-        nextPhoto();
+        setGameInfo({type: props.location.state.type, lvl: props.location.state.lvl})
         
     }, [])
 
+    const startGame = () => {
+        nextPhoto();
+    }
     const nextPhoto =  async () => {
-        await getCard();
-        
-        getPhotoCode();
+
+        console.log(gameInfo)
+        let card = await getCard();
+        getPhotoCode(card);
         document.getElementById('input-text-box').value = '';
     }
 
     const getCard = async () => {
-        setLvl(props.location.state.lvl)
         
-        console.log(lvl + "lvl")
-        console.log(type + "type")
-        let card = await getRandomInt(0, cardListLvl[lvl])
+        console.log(props.location)
+        console.log(gameInfo.lvl + "lvl")
+        console.log(gameInfo.type + "type")
+        let card = await getRandomInt(0, cardListLvl[gameInfo.lvl])
 
         if (card !== undefined){
             setActualCard(card)
+            return card;
         }
 
+    }
+
+    const getPhotoCode = (card) => {
+        console.log(actualCard + " actualCard")
+        let actualCardA = card
+        if(gameInfo.type === "hiragana"){
+            setPhotoCode (actualCardA + 'hir');
+            console.log(photoCode)
+        }else if (gameInfo.type === "katakana"){
+            setPhotoCode (actualCardA + 'kat');
+            console.log(photoCode)
+        }else if (gameInfo.type === "all"){
+            let randomType = getRandomInt(0,1);
+            console.log(randomType + "type")
+            if (randomType === 0){
+                setPhotoCode (actualCardA + 'hir');
+                console.log(photoCode)
+            }else if (randomType === 1){
+                setPhotoCode (actualCardA + 'kat');
+                console.log(photoCode + " photoCode")
+            }
+        }
+        
+        
     }
 
     const getRandomInt = (min, max) => {
@@ -102,30 +124,13 @@ export default function Game (props){
     }
 
     
-    const getPhotoCode = () => {
-        if(type === "hiragana"){
-            setPhotoCode (actualCard + 'hir');
-
-        }else if (type === "katakana"){
-            setPhotoCode (actualCard + 'kat');
-
-        }else if (type === "all"){
-            let randomType = getRandomInt(0,1);
-            console.log(randomType + "type")
-            if (randomType === 0){
-                setPhotoCode (actualCard + 'hir');
-            }else{
-                setPhotoCode (actualCard + 'kat');
-            }
-        }
-        console.log(photoCode)
-        
-    }
+    
     
 
         
 
     return(
+       
         <>
             <p>Game</p>
             <Chrono/>
@@ -136,12 +141,16 @@ export default function Game (props){
             </div>
             <div className='game-container'>
 
+                <button onClick={startGame}>
+                    Start
+                </button>
+                <br/>
                 <div className='game-card-container'>
                     <Card 
                     id={actualCard} 
-                    type={type} 
+                    type={gameInfo.type} 
                     photoCode={photoCode}
-                    lvl={lvl}
+                    lvl={gameInfo.lvl}
                     />
                 </div>
                 <form className='input-container'>

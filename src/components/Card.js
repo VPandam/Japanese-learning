@@ -5,7 +5,6 @@ import './styles/Card.css'
 export default function Card (props){
 
 
-    
     if(props.id >= 0){
 
         return(
