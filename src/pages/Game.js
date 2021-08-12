@@ -20,8 +20,7 @@ export default function Game (props){
     const [actualCard, setActualCard] = useState(undefined);
     const [userInput, setUserInput] = useState('');
     const [photoCode, setPhotoCode] = useState('');
-    const [gameInfo, setGameInfo] = useState({type: undefined, lvl: undefined});
-
+    const [gameInfo, setGameInfo] = useState({type: props.location.state.type, lvl: props.location.state.lvl});
 
 
 
@@ -29,12 +28,10 @@ export default function Game (props){
     useEffect(() => {
 
         setGameInfo({type: props.location.state.type, lvl: props.location.state.lvl})
-        
+        nextPhoto();
     }, [])
 
-    const startGame = () => {
-        nextPhoto();
-    }
+
     const nextPhoto =  async () => {
 
         console.log(gameInfo)
@@ -141,10 +138,6 @@ export default function Game (props){
             </div>
             <div className='game-container'>
 
-                <button onClick={startGame}>
-                    Start
-                </button>
-                <br/>
                 <div className='game-card-container'>
                     <Card 
                     id={actualCard} 
