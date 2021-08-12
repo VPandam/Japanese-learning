@@ -3,16 +3,20 @@ import Chrono from '../components/Chrono.js'
 import Card from '../components/Card'
 import './styles/Game.css'
 
+import getRandomCard from '../functions/getRandomCard.js';
+import getPhotoCode from '../functions/getPhotoCode.js';
+
 
 export default function Game (props){
 
-    const cardList = {0:"a", 1:"i", 2:"u", 3:"e", 4:"o", 5:"ka", 6:"ki", 7:"ku", 8:"ke",
-    9:"ko", 10:"sa", 11:"shi", 12:"su", 13:"se", 14:"so"};
+    const cardList = {0:["a"], 1:["i"], 2:["u"], 3:["e"], 4:["o"], 5:["ka"], 6:["ki", "gi"],
+     7:["ku", "gu"], 8:["ke", "ge"], 9:["ko", "go"], 10:["sa", "za"], 11:["shi", "ji"], 12:["su", "zu"], 
+     13:["se", "ze"], 14:["so", "zo"]};
+
+    
     
     const cardListLvl = {1:4, 2:9, 3:14};
-    let totalTries = 0;
-    let totalSuccess = 0;
-    let totalFails = 0;
+
     
     
     
@@ -20,7 +24,10 @@ export default function Game (props){
     const [actualCard, setActualCard] = useState(undefined);
     const [userInput, setUserInput] = useState('');
     const [photoCode, setPhotoCode] = useState('');
-    const [gameInfo, setGameInfo] = useState({type: props.location.state.type, lvl: props.location.state.lvl});
+    const [gameInfo, setGameInfo] = useState({type: props.location.state.type,
+         lvl: props.location.state.lvl });
+    const [gameScore, setGameScore] = useState({totalTries: 0, totalSuccess: 0, totalFails: 0});
+
 
 
 
@@ -35,67 +42,12 @@ export default function Game (props){
     const nextPhoto =  async () => {
 
         console.log(gameInfo)
-        let card = await getCard();
-        getPhotoCode(card);
+        let card = await getRandomCard(cardListLvl[gameInfo.lvl]);
+        setActualCard(card)
+        let code = getPhotoCode(card, gameInfo.type);
+        setPhotoCode(code)
         document.getElementById('input-text-box').value = '';
     }
-
-    const getCard = async () => {
-        
-        console.log(props.location)
-        console.log(gameInfo.lvl + "lvl")
-        console.log(gameInfo.type + "type")
-        let card = await getRandomInt(0, cardListLvl[gameInfo.lvl])
-
-        if (card !== undefined){
-            setActualCard(card)
-            return card;
-        }
-
-    }
-
-    const getPhotoCode = (card) => {
-        console.log(actualCard + " actualCard")
-        let actualCardA = card
-        if(gameInfo.type === "hiragana"){
-            setPhotoCode (actualCardA + 'hir');
-            console.log(photoCode)
-        }else if (gameInfo.type === "katakana"){
-            setPhotoCode (actualCardA + 'kat');
-            console.log(photoCode)
-        }else if (gameInfo.type === "all"){
-            let randomType = getRandomInt(0,1);
-            console.log(randomType + "type")
-            if (randomType === 0){
-                setPhotoCode (actualCardA + 'hir');
-                console.log(photoCode)
-            }else if (randomType === 1){
-                setPhotoCode (actualCardA + 'kat');
-                console.log(photoCode + " photoCode")
-            }
-        }
-        
-        
-    }
-
-    const getRandomInt = (min, max) => {
-        let randomInt;
-        // var RandomOrg = require('random-org');
-
-        // var random = new RandomOrg({ apiKey: '54e8a177-dcdc-4f57-aac8-f99b57ce46bb' });
-        // await random.generateIntegers({ min: min, max: max, n: 1 })
-        // .then(function(result) {
-        //     randomInt = result.random.data[0];
-            
-        // });
-        randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    
-        console.log("randomInt: " + randomInt) 
-        return randomInt
-    }
-
-    
     
     const handleChange = e => {
 
@@ -107,24 +59,21 @@ export default function Game (props){
         
         ev.preventDefault();
         console.log("handleSubmit " + cardList[actualCard])
-        if (userInput === cardList[actualCard]){
+        if (cardList[actualCard].includes(userInput)){
             alert("zi putito zi");
+        
+            setGameScore({totalTries: ++gameScore.totalTries, totalSuccess: ++gameScore.totalSuccess, 
+                totalFails: gameScore.totalFails});
             nextPhoto();
-            totalTries = ++totalTries;
-            totalSuccess = ++totalSuccess;
             
         }else{
             alert("nono putito");
-            totalFails = ++totalFails;
-            totalTries = ++totalTries;
+            setGameScore({totalTries: ++gameScore.totalTries, totalSuccess: gameScore.totalSuccess, 
+                totalFails: ++gameScore.totalFails});
+            document.getElementById('input-text-box').value = '';
+
         }
     }
-
-    
-    
-    
-
-        
 
     return(
        
@@ -132,9 +81,9 @@ export default function Game (props){
             <p>Game</p>
             <Chrono/>
             <div>
-                <p>Tries: {totalTries}</p>
-                <p>Success: {totalSuccess}</p>
-                <p>Fail: {totalFails}</p>
+                <p>Tries: {gameScore.totalTries}</p>
+                <p>Success: {gameScore.totalSuccess}</p>
+                <p>Fail: {gameScore.totalFails}</p>
             </div>
             <div className='game-container'>
 
@@ -144,6 +93,7 @@ export default function Game (props){
                     type={gameInfo.type} 
                     photoCode={photoCode}
                     lvl={gameInfo.lvl}
+
                     />
                 </div>
                 <form className='input-container'>
