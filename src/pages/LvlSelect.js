@@ -20,6 +20,11 @@ export default function LvlSelect(){
                 <button className='button' onClick={() => setLvl(1)}> 1 </button>
                 <button className='button' onClick={() => setLvl(2)}> 2 </button>
                 <button className='button' onClick={() => setLvl(3)}> 3 </button>
+                <button className='button' onClick={() => setLvl(4)}> 4 </button>
+                <button className='button' onClick={() => setLvl(5)}> 5 </button>
+                <button className='button' onClick={() => setLvl(6)}> 6 </button>
+                <button className='button' onClick={() => setLvl(7)}> 7 </button>
+                <button className='button' onClick={() => setLvl(8)}> 8 </button>
             </div> 
 
         <div className='button'>
