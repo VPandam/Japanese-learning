@@ -1,8 +1,8 @@
 import './App.css';
-import Game from './pages/Game'
+import Game from './pages/Game/Game'
 import React from 'react'
-import Home from './pages/Home'
-import LvlSelect from './pages/LvlSelect'
+import Home from './pages/Home/Home'
+import LvlSelect from './pages/LvlSelect/LvlSelect'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
