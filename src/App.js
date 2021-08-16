@@ -9,8 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/lvlselect' component={LvlSelect}/>
+        <Route exact path='/' component={LvlSelect}/>
         <Route exact path='/game' component={Game}/>
       </Switch>
     </BrowserRouter>

@@ -1,8 +1,7 @@
 .lvl-select {
   display: flex;
   flex-direction: column;
-  height: 100%;
-
+  height: 100vh;
   align-items: center;
   justify-content: center;
 
@@ -11,12 +10,67 @@
 /*Type*/
 .button-type-container {
   width: 40vw;
+  opacity: 0;
 
   display: flex;
   flex-direction: column;
-
-  margin-top: 60px;
 }
+
+.slide-in-left {
+  -webkit-animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.disappear {
+  -webkit-animation: disappear 1s;
+  animation: disappear 1s;
+}
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.no-display {
+  display: none !important;
+}
+
 .textContainer-type {
   text-align: center;
 }
@@ -26,6 +80,11 @@
 
   margin-top: 30px;
 }
+.button-choselvl {
+  display: inline-block;
+  margin: 20px auto;
+  width: 40vw;
+}
 
 /*Lvl*/
 .button-lvl-container {
@@ -33,6 +92,8 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   margin-top: 60px;
 }

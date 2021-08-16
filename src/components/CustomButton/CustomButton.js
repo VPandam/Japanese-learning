@@ -47,6 +47,8 @@ export default function CustomButton (props){
                 changeClassLvl();
             }} id={props.id}> {props.children} </button>
         )
+    }else{
+        return <button className={`${props.button} button`} onClick={props.click} id={props.id}> {props.children} </button>
     }
     
 }
