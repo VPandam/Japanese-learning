@@ -1,12 +1,53 @@
-.button {
-  width: 200px;
-  height: 70px;
+.lvl-select {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  margin: 20px 20px;
-  display: inline-block;
-  background-color: blueviolet;
-  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
 }
+/*Type*/
+.button-type-container {
+  width: 40vw;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 60px;
+}
+.textContainer-type {
+  text-align: center;
+}
+.buttons-type-container {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 30px;
+}
+
+/*Lvl*/
+.button-lvl-container {
+  width: 40vw;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 60px;
+}
+.text-lvl-container {
+  text-align: center;
+}
+.buttons-lvl-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-top: 30px;
+}
+
+/*Start Game*/
 
 .button a {
   display: flex;
@@ -19,5 +60,7 @@
 }
 
 .button a label {
-  color: aliceblue;
+  font-size: large;
+  color: black;
+  font-weight: 500;
 }

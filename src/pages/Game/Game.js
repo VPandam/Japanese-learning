@@ -66,7 +66,7 @@ export default function Game (props){
     
     const handleChange = e => {
 
-        setUserInput(e.target.value)
+        setUserInput(e.target.value.toLowerCase())
 
     }
 

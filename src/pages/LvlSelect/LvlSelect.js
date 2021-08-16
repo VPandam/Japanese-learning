@@ -2,56 +2,77 @@ import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 import './LvlSelect.css'
 
+import CustomButton from '../../components/CustomButton/CustomButton';
+
 
 export default function LvlSelect(){
     const [type, setType] = useState("");
-    const [lvl, setLvl] = useState({minCard: 0, maxCard: undefined, lvl: 1});
+    const [lvl, setLvl ] = useState({minCard: 0, maxCard: undefined, lvl: undefined});
 
+
+    const setLvlE = (min, max, lvl) => {
+        setLvl({minCard: min, maxCard: max, lvl: lvl})
+    }
+    
+    
+ 
 
     return(
-        <React.Fragment>
-            <div>
-                <p>What do you want to practice?</p>
-                <button className='button' onClick={() => setType("hiragana")}> HIRAGANA </button>
-                <button className='button' onClick={() => setType("katakana")}> KATAKANA </button>
-                <button className='button' onClick={() => setType("all")}> ALL </button>
-                
-                <p>LVL?</p>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 1})}> 1 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 2})}> 2 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 3})}> 3 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 4})}> 4 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 5})}> 5 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 6})}> 6 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 7})}> 7 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:0, maxCard: undefined, lvl: 8})}> 8 </button>
-                <button className='button' onClick={
-                    () => setLvl({minCard:5, maxCard: 14, lvl: undefined})}> ka-sa </button>
+        <div className='lvl-select'>
+            <div className ='button-type-container'>
+                <div className='textContainer-type'>
+                    <h1>What do you want to practice?</h1>
+                </div>
+                <div className='buttons-type-container'>
+                    <CustomButton button='Type' click={() =>setType("hiragana")} id={1}> HIRAGANA </CustomButton>
+                    <CustomButton button='Type' click={() =>setType("katakana")} id={2}> KATAKANA </CustomButton>
+                    <CustomButton button='Type' click={() =>setType("all")} id={3}> ALL </CustomButton>
+                </div>
             </div> 
 
-        <div className='button'>
-            <Link to={{
-                pathname: '/game',
-                state: {
-                    type: type,
-                    minCard: lvl.minCard,
-                    maxCard: lvl.maxCard,
-                    lvl: lvl.lvl
-                }
-            }} 
-            >
-                <label>GAME</label>
-            </Link>
-        </div>
+            {type&&
+                <div className='button-lvl-container'>
+                    <div className='text-lvl-container'>
+                        <h1>Chose a lvl or practice specific syllables</h1>
+                    </div>
+                    <div className='buttons-lvl-container'>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 1)} id={4}> 1 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 2)} id={5}> 2 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 3)} id={6}> 3 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 4)} id={7}> 4 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 5)} id={8}> 5 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 6)} id={9}> 6 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 7)} id={10}> 7 </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 8)} id={11}> 8 </CustomButton>
+                        
+                        <CustomButton button='lvl' click={() => setLvlE(5, 14, undefined)} id={12}> k*-s* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(15, 24, undefined)} id={13}> t*-n* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(25, 34, undefined)} id={14}> h*-m* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(35, 45, undefined)} id={15}> y*-r*-n </CustomButton>
+                       
+                    </div>
+                </div>
+            }
+            
+            
+            {type && (lvl.maxCard || lvl.lvl) &&
+            
+                <div className='buttonGame button'>
+                    <Link to={{
+                        pathname: '/game',
+                        state: {
+                            type: type,
+                            minCard: lvl.minCard,
+                            maxCard: lvl.maxCard,
+                            lvl: lvl.lvl
+                        }
+                    }} 
+                    >
+                        <label>GAME</label>
+                    </Link>
+                </div>
+            }
 
-        </React.Fragment>
+        </div>
     )
 }
