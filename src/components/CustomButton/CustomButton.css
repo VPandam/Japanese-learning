@@ -1,0 +1,26 @@
+.button {
+  width: 180px;
+  height: 70px;
+
+  margin: 20px 20px;
+  display: inline-block;
+  background-color: #0096c7;
+  cursor: pointer;
+
+  font-size: large;
+  color: black;
+
+  border-radius: 20px;
+  border: solid 2px black;
+}
+
+.clicked {
+  background-color: #023e8a;
+  color: #ffffff;
+}
+
+.buttonGame {
+  margin-top: 60px;
+  width: 30vw;
+  background-color: #0077b6;
+}
