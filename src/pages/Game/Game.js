@@ -93,37 +93,40 @@ export default function Game (props){
     return(
        
         <>
-            <p>Game</p>
-            <Chrono/>
-            <div>
-                <p>Tries: {gameScore.totalTries}</p>
-                <p>Success: {gameScore.totalSuccess}</p>
-                <p>Fail: {gameScore.totalFails}</p>
-            </div>
-            <div className='game-container'>
+            <div className='principal-container'>
 
-                <div className='game-card-container'>
-                    <Card 
-                    id={actualCard} 
-                    type={gameInfo.type} 
-                    photoCode={photoCode}
-                    lvl={gameInfo.lvl}
+                {/* <p>Game</p>
+                <Chrono/>
+                <div>
+                    <p>Tries: {gameScore.totalTries}</p>
+                    <p>Success: {gameScore.totalSuccess}</p>
+                    <p>Fail: {gameScore.totalFails}</p>
+                </div> */}
+                <div className='game-container'>
 
-                    />
+                    <div className='game-card-container'>
+                        <Card 
+                        id={actualCard} 
+                        type={gameInfo.type} 
+                        photoCode={photoCode}
+                        lvl={gameInfo.lvl}
+
+                        />
+                        
+                    </div>
+                        
+                    <form className='input-container'>
+                        <input 
+                        onChange={handleChange} 
+                        className='input-text' 
+                        id='input-text-box'
+                        type="text"
+                        autoComplete="off"
+                        />
+                        <button onClick={handleSubmit} id ='button-send'> Send</button>
+                    </form>
                     
                 </div>
-                    
-                <form className='input-container'>
-                    <input 
-                    onChange={handleChange} 
-                    className='input-text' 
-                    id='input-text-box'
-                    type="text"
-                    autoComplete="off"
-                    />
-                    <button onClick={handleSubmit} id ='button-send'> Send</button>
-                </form>
-                
             </div>
         </>
     )

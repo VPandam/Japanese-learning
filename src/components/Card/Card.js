@@ -105,20 +105,27 @@ export default function Card (props){
 
         return(
             <div className='card-container'>
-                <div className='cards'>
                     {/* <img src={urlList[props.photoCode]} alt="" /> */}
                     {urlList[props.photoCode].map((url, index) => {
                         if (index === 1){
-                            return <img src={url} className='writing' key={index} alt="" />
+                            return (
+                                <div className='individual-card-writing'>
+                                    <img src={url} className='writing' key={index} alt="" />
+                                </div>
+                            )
                         }else{
-                            return <img src={url} key={index} alt="" />
+                            return (
+                                <div className='individual-card'>
+                                    <img src={url} key={index} alt="" />                                   
+                                </div>                        
+                            )
+                                
+                                
                         }
                         
                     
                     })}
                     
-
-                </div>
 
             </div>
         )

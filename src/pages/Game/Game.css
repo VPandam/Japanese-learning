@@ -1,16 +1,29 @@
-.game-container {
-  width: 70%;
+.principal-container {
+  background-color: #343a40;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
 
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-card-container {
+  height: 70%;
+}
+.game-container {
+  width: 50%;
+  height: 45%;
+
+  /* position: relative; */
   display: flex;
   flex-direction: column;
-  top: 10vh;
-
-  margin: 0 auto;
+  /* top: 10vh; */
 }
 
 .input-container {
-  margin: auto;
+  margin: 0 auto;
+  margin-top: 6%;
 }
 
 .input-container input {
@@ -21,4 +34,16 @@
   width: 60px;
 
   margin-left: 10px;
+}
+
+@media (max-width: 1400px) {
+  .game-container {
+    width: 70%;
+    height: 55%;
+  }
+}
+@media (max-width: 1024px) {
+  .game-container {
+    width: 90%;
+  }
 }

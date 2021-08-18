@@ -4,7 +4,7 @@
 
   margin: 20px 20px;
   display: inline-block;
-  background-color: #0096c7;
+  background-color: #adb5bd;
   cursor: pointer;
 
   font-size: large;
@@ -15,19 +15,19 @@
 }
 
 .clicked {
-  background-color: #023e8a;
+  background-color: #6c757d;
   color: #ffffff;
 }
 
 .buttonGame {
   margin-top: 60px;
   width: 30vw;
-  background-color: #ade8f4;
+  background-color: #ced4da;
 }
 
 .button-choselvl {
   display: inline-block;
   margin: 30px auto;
   width: 25vw;
-  background-color: #ade8f4;
+  background-color: #ced4da;
 }

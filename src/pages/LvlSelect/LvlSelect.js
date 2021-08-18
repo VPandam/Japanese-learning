@@ -45,7 +45,7 @@ export default function LvlSelect(){
                     <CustomButton button='Type' click={() =>setType("all")} id={3}> ALL </CustomButton>
                 </div>
                     
-                <CustomButton button='button-choselvl' click={choseLvl} id={4}> Chose level </CustomButton>
+                <CustomButton button='button-choselvl' click={choseLvl} id={4}> Choose level </CustomButton>
                 
             </div> 
 
