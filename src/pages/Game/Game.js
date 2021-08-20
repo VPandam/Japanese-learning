@@ -5,6 +5,8 @@ import './Game.css'
 
 import getRandomCard from '../../functions/getRandomCard.js';
 import getPhotoCode from '../../functions/getPhotoCode.js';
+import CustomButton from '../../components/CustomButton/CustomButton';
+import { Link } from 'react-router-dom';
 
 
 export default function Game (props){
@@ -74,18 +76,32 @@ export default function Game (props){
         
         ev.preventDefault();
         console.log("handleSubmit " + cardList[actualCard])
+        const inputBox = document.getElementById("input-text-box")
+        const submitButton = document.getElementById('button-send')
         if (cardList[actualCard].includes(userInput)){
-            alert("zi putito zi");
         
             setGameScore({totalTries: ++gameScore.totalTries, totalSuccess: ++gameScore.totalSuccess, 
                 totalFails: gameScore.totalFails});
+            inputBox.classList.toggle('correct');
+            submitButton.classList.toggle('correct');
+            setTimeout(() => {
+                inputBox.classList.toggle('correct');
+                submitButton.classList.toggle('correct');
+            }, 400)
             nextPhoto();
             
         }else{
-            alert("nono putito");
+            
             setGameScore({totalTries: ++gameScore.totalTries, totalSuccess: gameScore.totalSuccess, 
                 totalFails: ++gameScore.totalFails});
-            document.getElementById('input-text-box').value = '';
+            
+            inputBox.value = '';
+            inputBox.classList.toggle('incorrect');
+            submitButton.classList.toggle('incorrect');
+            setTimeout(() => {
+                inputBox.classList.toggle('incorrect');
+                submitButton.classList.toggle('incorrect');
+            }, 400)
 
         }
     }
@@ -93,15 +109,15 @@ export default function Game (props){
     return(
        
         <>
+            
             <div className='principal-container'>
+            <div className='back'>
+                <CustomButton button='back-button'>
+                    <Link to ='/'>Level Select</Link> 
+                </CustomButton>     
+            </div>
+            <div className='second-container'>
 
-                {/* <p>Game</p>
-                <Chrono/>
-                <div>
-                    <p>Tries: {gameScore.totalTries}</p>
-                    <p>Success: {gameScore.totalSuccess}</p>
-                    <p>Fail: {gameScore.totalFails}</p>
-                </div> */}
                 <div className='game-container'>
 
                     <div className='game-card-container'>
@@ -123,10 +139,21 @@ export default function Game (props){
                         type="text"
                         autoComplete="off"
                         />
-                        <button onClick={handleSubmit} id ='button-send'> Send</button>
+                        <CustomButton click={handleSubmit} id ='button-send' button='send' c> Send</CustomButton>
                     </form>
+
+                    
+                    <div className='game-info'>
+                        {/* <Chrono/> */}
+                        <p>Tries: {gameScore.totalTries}</p>
+                        <p>Success: {gameScore.totalSuccess}</p>
+                        <p>Fail: {gameScore.totalFails}</p>
+                    </div>
+                
+                
                     
                 </div>
+            </div>
             </div>
         </>
     )

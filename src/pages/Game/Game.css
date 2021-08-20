@@ -1,45 +1,126 @@
 .principal-container {
   background-color: #343a40;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: absolute;
 
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.game-card-container {
-  height: 70%;
+.back {
+  align-self: flex-start;
+  height: 10%;
+}
+
+.back .back-button {
+  height: 50px;
+}
+.back .back-button a {
+  color: black;
+}
+
+.second-container {
+  height: 85%;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
 }
 .game-container {
-  width: 50%;
-  height: 45%;
+  width: 45%;
+  height: 75%;
 
   /* position: relative; */
   display: flex;
   flex-direction: column;
   /* top: 10vh; */
+
+  margin: auto 0;
+}
+.game-card-container {
+  /* height: ; */
 }
 
 .input-container {
   margin: 0 auto;
-  margin-top: 6%;
+  margin-top: 8%;
 }
 
 .input-container input {
-  height: 30px;
+  height: 35px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.input-container input:focus {
+  outline: none;
 }
 .input-container button {
-  height: 30px;
-  width: 60px;
+  height: 35px;
+  width: 100px;
 
   margin-left: 10px;
+  margin-right: 0px;
+}
+
+.correct {
+  border: #fff !important;
+
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #0dc23a,
+    0 0 0.8rem #0dc23a, 0 0 2.8rem #0dc23a, inset 0 0 1.3rem #0dc23a;
+}
+.incorrect {
+  border: #fff !important;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #df1515,
+    0 0 0.8rem #df1515, 0 0 2.8rem #df1515, inset 0 0 1.3rem #df1515;
+}
+
+.game-info {
+  color: white;
+  display: flex;
+
+  margin: 0 auto;
+  margin-top: 8%;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-color: #212529;
+  width: 85%;
+
+  font-size: 1.3rem;
+}
+
+.game-info p {
+  margin-right: 20px;
 }
 
 @media (max-width: 1400px) {
   .game-container {
     width: 70%;
-    height: 55%;
+    height: 100%;
+  }
+
+  .back .back-button {
+    width: 140px;
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  .game-info {
+    margin-top: 4%;
+    height: 45px;
+    font-size: 1.2rem;
+    width: 80%;
+  }
+
+  .input-container {
+    margin-top: 4%;
   }
 }
 @media (max-width: 1024px) {

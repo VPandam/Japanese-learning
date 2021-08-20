@@ -52,7 +52,7 @@ export default function LvlSelect(){
             {type&&
                 <div className='button-lvl-container no-display' id='button-lvl-container'>
                     <div className='text-lvl-container'>
-                        <h1>Chose a lvl or practice specific syllables</h1>
+                        <h1>Choose a lvl or practice specific syllables</h1>
                     </div>
                     <div className='buttons-lvl-container'>
                         <CustomButton button='lvl' click={() => setLvlE(0, undefined, 1)} id={5}> 1 </CustomButton>

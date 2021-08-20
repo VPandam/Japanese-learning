@@ -84,7 +84,7 @@
 .button-choselvl {
   display: inline-block;
   margin: 20px auto;
-  width: 40vw;
+  width: 250px;
 }
 
 /*Lvl*/
@@ -95,8 +95,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin-top: 60px;
 }
 .text-lvl-container {
   text-align: center;
@@ -125,4 +123,36 @@
   font-size: large;
   color: black;
   font-weight: 500;
+}
+
+@media (max-width: 1650px) {
+  .button-lvl-container {
+    width: 50vw;
+  }
+}
+@media (max-width: 1320px) {
+  .button-lvl-container {
+    width: 60vw;
+  }
+}
+@media (max-width: 1100px) {
+  .button-lvl-container {
+    width: 80vw;
+  }
+}
+@media (max-width: 1100px) {
+  .button-lvl-container {
+    width: 70vw;
+  }
+}
+@media (max-width: 950px) {
+  .button-lvl-container {
+    width: 90vw;
+  }
+}
+@media (max-width: 850px) {
+  .button-lvl-container button {
+    width: 80px;
+    margin: 10px 10px;
+  }
 }
