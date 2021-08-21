@@ -156,3 +156,13 @@
     margin: 10px 10px;
   }
 }
+@media (max-width: 500px) {
+  .button-type-container {
+    width: 90%;
+  }
+
+  .buttonType {
+    font-size: small;
+    margin: 10px 10px;
+  }
+}
