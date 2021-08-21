@@ -1,5 +1,7 @@
-.principal-container {
+body {
   background-color: #343a40;
+}
+.principal-container {
   height: 100%;
   width: 100%;
   position: absolute;
