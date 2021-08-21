@@ -60,14 +60,17 @@
 @media (max-width: 500px) {
   .individual-card {
     margin-right: 0px;
-    width: 100%;
+    width: 200px;
+    height: 200px;
   }
 }
-@media (max-height: 820px) {
+@media (max-height: 820px) and (min-width: 1000px) {
   .individual-card-writing {
     height: 200px;
+    width: 250px;
   }
   .individual-card {
     height: 200px;
+    width: 250px;
   }
 }

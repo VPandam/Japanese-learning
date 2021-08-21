@@ -9,7 +9,7 @@ export default function LvlSelect(){
     const [type, setType] = useState('');
     const [lvl, setLvl ] = useState({minCard: 0, maxCard: undefined, lvl: undefined});
 
-
+    let id = 0;
     const setLvlE = (min, max, lvl) => {
         setLvl({minCard: min, maxCard: max, lvl: lvl})
     }
@@ -40,12 +40,12 @@ export default function LvlSelect(){
                     <h1>What do you want to practice?</h1>
                 </div>
                 <div className='buttons-type-container' >
-                    <CustomButton button='Type' click={() =>setType("hiragana")} id={1}> HIRAGANA </CustomButton>
-                    <CustomButton button='Type' click={() =>setType("katakana")} id={2}> KATAKANA </CustomButton>
-                    <CustomButton button='Type' click={() =>setType("all")} id={3}> ALL </CustomButton>
+                    <CustomButton button='Type' click={() =>setType("hiragana")} id={id}> HIRAGANA </CustomButton>
+                    <CustomButton button='Type' click={() =>setType("katakana")} id={++id}> KATAKANA </CustomButton>
+                    <CustomButton button='Type' click={() =>setType("all")} id={++id}> ALL </CustomButton>
                 </div>
                     
-                <CustomButton button='button-choselvl' click={choseLvl} id={4}> Choose level </CustomButton>
+                <CustomButton button='button-choselvl' click={choseLvl} id={++id}> Choose level </CustomButton>
                 
             </div> 
 
@@ -55,19 +55,13 @@ export default function LvlSelect(){
                         <h1>Choose a lvl or practice specific syllables</h1>
                     </div>
                     <div className='buttons-lvl-container'>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 1)} id={5}> 1 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 2)} id={6}> 2 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 3)} id={7}> 3 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 4)} id={8}> 4 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 5)} id={9}> 5 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 6)} id={10}> 6 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 7)} id={11}> 7 </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(0, undefined, 8)} id={12}> 8 </CustomButton>
+
                         
-                        <CustomButton button='lvl' click={() => setLvlE(5, 14, undefined)} id={13}> k*-s* </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(15, 24, undefined)} id={14}> t*-n* </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(25, 34, undefined)} id={15}> h*-m* </CustomButton>
-                        <CustomButton button='lvl' click={() => setLvlE(35, 45, undefined)} id={16}> y*-r*-n </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(5, 14, undefined)} id={++id}> K* - S* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(15, 24, undefined)} id={++id}> T* - N* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(25, 34, undefined)} id={++id}> H* - M* </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(35, 45, undefined)} id={++id}> Y* - R* - N </CustomButton>
+                        <CustomButton button='lvl' click={() => setLvlE(0, 45, undefined)} id={++id}> ALL </CustomButton>
                        
                     </div>
                     <div className='buttonGame button'>

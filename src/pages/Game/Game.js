@@ -7,6 +7,7 @@ import getRandomCard from '../../functions/getRandomCard.js';
 import getPhotoCode from '../../functions/getPhotoCode.js';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { Link } from 'react-router-dom';
+import backArrow from '../../images/arrow.png'
 
 
 export default function Game (props){
@@ -113,7 +114,9 @@ export default function Game (props){
             <div className='principal-container'>
             <div className='back'>
                 <CustomButton button='back-button'>
-                    <Link to ='/'>Level Select</Link> 
+                    <Link to ='/'> 
+                        <img src={backArrow} alt="" />
+                    </Link> 
                 </CustomButton>     
             </div>
             <div className='second-container'>

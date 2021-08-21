@@ -12,10 +12,17 @@
 .back {
   align-self: flex-start;
   height: 10%;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+.back img {
+  width: 30px;
 }
 
 .back .back-button {
-  height: 50px;
+  background-color: rgba(255, 255, 255, 0.89);
+  width: 60px;
+  height: 60px;
 }
 .back .back-button a {
   color: black;
@@ -27,6 +34,10 @@
   flex-direction: column;
   display: flex;
   align-items: center;
+  margin-top: 1%;
+
+  -webkit-animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .game-container {
   width: 45%;
@@ -100,16 +111,36 @@
   margin-right: 20px;
 }
 
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 1400px) {
   .game-container {
     width: 70%;
     height: 100%;
-  }
-
-  .back .back-button {
-    width: 140px;
-    height: 40px;
-    margin-top: 10px;
   }
 
   .game-info {
@@ -123,8 +154,46 @@
     margin-top: 4%;
   }
 }
+
+@media (max-height: 820px) and (min-width: 1000px) {
+  .second-container {
+    margin-top: 5%;
+  }
+  .game-info {
+    width: 600px;
+  }
+  .input-container input {
+    width: 200px;
+  }
+}
 @media (max-width: 1024px) {
   .game-container {
     width: 90%;
+  }
+}
+@media (max-width: 500px) {
+  .back {
+    margin-left: 10px;
+  }
+  .back img {
+    width: 25px;
+  }
+  .second-container {
+    margin-top: 20%;
+  }
+
+  .back .back-button {
+    width: 50px;
+    height: 50px;
+  }
+  .game-info {
+    width: 280px;
+    font-size: 1rem;
+  }
+  .input-container {
+    margin-top: 12%;
+  }
+  .input-container input {
+    width: 170px;
   }
 }
