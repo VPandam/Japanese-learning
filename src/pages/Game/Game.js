@@ -8,17 +8,18 @@ import getPhotoCode from '../../functions/getPhotoCode.js';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { Link } from 'react-router-dom';
 import backArrow from '../../images/arrow.png'
+import { act } from 'react-dom/test-utils';
 
 
 export default function Game (props){
 
-    const cardList = {0:["a"], 1:["i"], 2:["u"], 3:["e"], 4:["o"], 5:["ka"], 6:["ki", "gi"],
-     7:["ku", "gu"], 8:["ke", "ge"], 9:["ko", "go"], 10:["sa", "za"], 11:["shi", "ji"], 12:["su", "zu"], 
-     13:["se", "ze"], 14:["so", "zo"], 15:["ta", "da"], 16:["chi", "di"], 17:["tsu", "zu"], 18:["te", "de"],
-     19:["to", "do"], 20:["na"], 21:["ni"], 22:["nu"], 23:["ne"], 24:["no"], 25:["ha", "ba"], 
-     26:["hi", "bi"], 27:["fu", "bu"], 28:["he", "be"], 29:["ho", "bo"], 30:["ma"], 31:["mi"], 32:["mu"],
+    const cardList = {0:["a"], 1:["i"], 2:["u"], 3:["e"], 4:["o"], 5:["ka"], 6:["ki"],
+     7:["ku"], 8:["ke"], 9:["ko"], 10:["sa"], 11:["shi"], 12:["su"], 
+     13:["se"], 14:["so"], 15:["ta", "da"], 16:["chi"], 17:["tsu"], 18:["te"],
+     19:["to"], 20:["na"], 21:["ni"], 22:["nu"], 23:["ne"], 24:["no"], 25:["ha"], 
+     26:["hi"], 27:["fu"], 28:["he"], 29:["ho"], 30:["ma"], 31:["mi"], 32:["mu"],
      33:["me"], 34:["mo"], 35:["ya"], 36:["yu"], 37:["yo"], 38:["ra"], 39:["ri"], 40:["ru"], 41:["re"],
-     42:["ro"], 43:["wa"], 44:["wo", "o"], 45:["n", "m"]    
+     42:["ro"], 43:["wa"], 44:["wo", "o"],  45:["n"]    
      };
 
     
@@ -36,6 +37,7 @@ export default function Game (props){
          lvl: props.location.state.lvl,  minCard: props.location.state.minCard, 
          maxCard: props.location.state.maxCard});
     const [gameScore, setGameScore] = useState({totalTries: 0, totalSuccess: 0, totalFails: 0});
+    let syllable = cardList[actualCard]
 
     
 
@@ -50,6 +52,7 @@ export default function Game (props){
             minCard: props.location.state.minCard, maxCard: props.location.state.maxCard})
         
         nextPhoto();
+
     }, [])
 
 
@@ -107,56 +110,61 @@ export default function Game (props){
         }
     }
 
+    
+
     return(
        
         <>
-            
+                
             <div className='principal-container'>
-            <div className='back'>
-                <CustomButton button='back-button'>
-                    <Link to ='/'> 
-                        <img src={backArrow} alt="" />
-                    </Link> 
-                </CustomButton>     
-            </div>
-            <div className='second-container'>
-
-                <div className='game-container'>
-
-                    <div className='game-card-container'>
-                        <Card 
-                        id={actualCard} 
-                        type={gameInfo.type} 
-                        photoCode={photoCode}
-                        lvl={gameInfo.lvl}
-
-                        />
-                        
-                    </div>
-                        
-                    <form className='input-container'>
-                        <input 
-                        onChange={handleChange} 
-                        className='input-text' 
-                        id='input-text-box'
-                        type="text"
-                        autoComplete="off"
-                        />
-                        <CustomButton click={handleSubmit} id ='button-send' button='send' c> Send</CustomButton>
-                    </form>
-
-                    
-                    <div className='game-info'>
-                        {/* <Chrono/> */}
-                        <p>Tries: {gameScore.totalTries}</p>
-                        <p>Success: {gameScore.totalSuccess}</p>
-                        <p>Fail: {gameScore.totalFails}</p>
-                    </div>
-                
-                
-                    
+                <div className='back'>
+                    <CustomButton button='back-button'>
+                        <Link to ='/'> 
+                            <img src={backArrow} alt="" />
+                        </Link> 
+                    </CustomButton>     
                 </div>
-            </div>
+                <div className='second-container'>
+
+                    <div className='game-container'>
+                        <div className='game-card-container'>
+
+                            <Card 
+                            id={actualCard} 
+                            type={gameInfo.type} 
+                            photoCode={photoCode}
+                            lvl={gameInfo.lvl}
+                            syllable={syllable}
+                            />
+                        </div>
+                                    
+                        <form className='input-container'>
+                            <input 
+                            onChange={handleChange} 
+                            className='input-text' 
+                            id='input-text-box'
+                            type="text"
+                            autoComplete="off"
+                            />
+                            <CustomButton click={handleSubmit} id ='button-send' button='send' c> Send</CustomButton>
+                        </form>
+
+                        
+                        <div className='game-info'>
+                            {/* <Chrono/> */}
+                            <p>Tries: {gameScore.totalTries}</p>
+                            <p>Success: {gameScore.totalSuccess}</p>
+                            <p>Fail: {gameScore.totalFails}</p>
+                        </div>
+
+                    </div>
+            
+
+                            
+                    
+                    
+                        
+                </div>
             </div>
         </>
     )
