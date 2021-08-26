@@ -20,9 +20,10 @@
 }
 
 .buttonGame {
-  margin-top: 60px;
+  position: absolute;
   width: 30vw;
   background-color: #ced4da;
+  bottom: 180px;
 }
 
 .button-choselvl {
@@ -30,4 +31,15 @@
   margin: 30px auto;
   width: 25vw;
   background-color: #ced4da;
+}
+
+@media (max-width: 500px) {
+  .buttonGame {
+    bottom: 5vh;
+  }
+}
+@media (max-height: 860px) and (min-width: 1000px) {
+  .buttonGame {
+    bottom: 5vh;
+  }
 }

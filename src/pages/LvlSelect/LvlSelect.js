@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './LvlSelect.css'
 
@@ -7,7 +7,7 @@ import CustomButton from '../../components/CustomButton/CustomButton';
 
 export default function LvlSelect(){
     const [type, setType] = useState('');
-    const [lvl, setLvl ] = useState({minCard: 0, maxCard: undefined, lvl: undefined});
+    const [lvl, setLvl ] = useState({});
 
     let id = 0;
     const setLvlE = (min, max, lvl) => {
@@ -29,6 +29,22 @@ export default function LvlSelect(){
         secondElement.classList.add('slide-in-left')
         secondElement.classList.toggle('no-display');
     }
+
+    useEffect(() => {
+        if(lvl.maxCard || lvl.minCard){
+
+            
+            const buttonGame = document.getElementById('buttonGame')
+            if(!buttonGame.classList.contains('slide-in-left')){
+                buttonGame.classList.add('slide-in-left')
+            }
+            
+            if(buttonGame.classList.contains('no-display')){
+                buttonGame.classList.toggle('no-display');
+            }
+        }
+
+    }, [lvl])
     
     
  
@@ -50,6 +66,7 @@ export default function LvlSelect(){
             </div> 
 
             {type&&
+            <>
                 <div className='button-lvl-container no-display' id='button-lvl-container'>
                     <div className='text-lvl-container'>
                         <h1>Choose a lvl or practice specific syllables</h1>
@@ -64,7 +81,9 @@ export default function LvlSelect(){
                         <CustomButton button='lvl' click={() => setLvlE(0, 45, undefined)} id={++id}> ALL </CustomButton>
                        
                     </div>
-                    <div className='buttonGame button'>
+                    
+                </div>
+                <div className='buttonGame button no-display' id='buttonGame'>
                         <Link to={{
                             pathname: '/game',
                             state: {
@@ -77,8 +96,8 @@ export default function LvlSelect(){
                         >
                             <label>GAME</label>
                         </Link>
-                    </div>
-                </div>
+                      </div>
+            </>    
             }
             
             
