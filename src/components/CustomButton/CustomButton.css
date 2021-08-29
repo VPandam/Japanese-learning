@@ -35,11 +35,17 @@
 
 @media (max-width: 500px) {
   .buttonGame {
-    bottom: 5vh;
+    bottom: 40px;
   }
 }
+@media (max-width: 1000px) {
+  .buttonGame {
+    bottom: 40px;
+  }
+}
+
 @media (max-height: 860px) and (min-width: 1000px) {
   .buttonGame {
-    bottom: 5vh;
+    bottom: 40px;
   }
 }
